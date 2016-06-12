@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Board from './components/Board';
+import List from './components/List';
 
 class App extends Component {
     
@@ -8,8 +9,10 @@ class App extends Component {
 
 render() {
     return (
-        <Board />
-    
+        <div>
+            <Board />
+            
+        </div>
     );
   }
 }

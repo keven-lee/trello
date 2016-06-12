@@ -7,32 +7,40 @@ import List from './List';
 export default class Board extends Component { 
   constructor(props) {
     super(props);
-    this.state = { item: '' }
+      
+    this.state = { term: '' }
+    
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
   
+  onInputChange(event) {
+        this.setState({ term: event.target.value });
+  }
     
-    handleSubmit (event) {
-      
-    }
+  onFormSubmit(event) {
+      event.preventDefault();
+      console.log(this.state.term);
+      this.setState({ term: this.state.term});
+      this.setState({ term: '' });
+      return (
+          <List />
+      );
+  }
     
    render() {
     return (
-      <div>
-        <h1>Board</h1>
-        <ul>Sample List 1
-        <li>Card 1</li>
-        <li>Card 2</li>
-        <li>Card 3</li>
-        </ul>
-     <form onSubmit={this.handleSubmit.bind(this)}> <input type='text' ref='item'  onChange={ event => this.onInputChange(event.target.value) }
-        value={this.state.item}/> 
-        <button> Add List </button>  
-     </form>
-      </div>
+     <form onSubmit={this.onFormSubmit} className='form-inline'> 
+         <input
+            placeholder='Enter List Here'
+            className='form-control col-xs-2'
+            value={this.state.term}
+            onChange={this.onInputChange} 
+            />
+                <span className='input-group-btn'>
+                    <button type='submit' className='btn btn-primary'> Add a List </button>
+                </span>
+    </form>
     );
-  }
-
-  onInputChange(item) {
-    this.setState({item});
   }
 }
